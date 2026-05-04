@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Seoul Guide | 首尔旅行攻略</title>
+  <style>
+    :root {
+      /* 温柔可爱的低饱和度配色 */
+      --color-bg: #FDF8F5;           /* 暖白色背景 */
+      --color-surface: #FFFFFF;
+      --color-text-primary: #4A4A4A;   /* 柔和深灰 */
+      --color-text-secondary: #8A8A8A;
+      --color-text-light: #B5B5B5;
+      
+      /* 三个板块的主题色（低饱和度） */
+      --color-pink: #F2C4CE;         /* 浅粉色 - 出发 */
+      --color-purple: #D4C4E8;        /* 淡紫色 - 暴走 */
+      --color-mint: #B8D8C8;         /* 薄荷绿 - 回家 */
+      --color-pink-dark: #E8A0B0;
+      --color-purple-dark: #B8A0D0;
+      --color-mint-dark: #98C0A8;
+      
+      --color-accent: #E8A0B0;
+      --color-accent-light: #FFF0F3;
+      --color-border: #F0E8E4;
+      --color-tag-bg: #F5F0EB;
+      
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+      --radius-sm: 12px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Page Container */
+    .page {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===================== 欢迎页 ===================== */
+    .welcome-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, #FFF5F7 0%, #FDF8F5 50%, #F5F0FA 100%);
+    }
+
+    /* 装饰元素 */
+    .welcome-deco {
+      position: absolute;
+      font-size: 28px;
+      opacity: 0.6;
+    }
+    .deco-1 { top: 10%; left: 8%; animation: float 6s ease-in-out infinite; }
+    .deco-2 { top: 15%; right: 10%; animation: float 5s ease-in-out infinite 1s; }
+    .deco-3 { bottom: 25%; left: 5%; animation: float 7s ease-in-out infinite 0.5s; }
+    .deco-4 { bottom: 20%; right: 8%; animation: float 6s ease-in-out infinite 2s; }
+    .deco-5 { top: 35%; left: 15%; animation: float 5s ease-in-out infinite 0.8s; }
+    .deco-6 { top: 40%; right: 12%; animation: float 6.5s ease-in-out infinite 1.5s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(5deg); }
+    }
+
+    .welcome-content {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .welcome-logo {
+      font-size: 56px;
+      margin-bottom: 16px;
+      animation: bounceIn 0.8s ease;
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      60% { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .welcome-title {
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: var(--color-text-primary);
+      margin-bottom: 8px;
+    }
+
+    .welcome-subtitle {
+      font-size: 16px;
+      color: var(--color-text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .welcome-tagline {
+      font-size: 14px;
+      color: var(--color-accent);
+      margin-bottom: 48px;
+    }
+
+    .welcome-start-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 40px;
+      background: linear-gradient(135deg, var(--color-pink-dark), var(--color-purple-dark));
+      color: white;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(232, 160, 176, 0.35);
+      transition: all 0.3s ease;
+    }
+
+    .welcome-start-btn:active {
+      transform: scale(0.96);
+      box-shadow: 0 4px 12px rgba(232, 160, 176, 0.25);
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--color-border);
+      border-radius: 1px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -28px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--color-surface);
+      border: 2px solid var(--color-accent);
+      z-index: 1;
+    }
+
+    .timeline-item.completed .timeline-dot {
+      background: var(--color-accent);
+    }
+
+    .timeline-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
+    }
+
+    .timeline-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .timeline-card:active {
+      transform: scale(0.98);
+    }
+
+    .timeline-title {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .timeline-desc {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+    }
+
+    .timeline-tag {
+      display: inline-block;
+      font-size: 10px;
+      padding: 2px 8px;
+      background: var(--color-tag-bg);
+      color: var(--color-text-secondary);
+      border-radius: 10px;
+      margin-top: 8px;
+    }
+
+    /* Section */
+    .section-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-text-light);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      padding-left: 4px;
+    }
+
+    .section-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .section-card h3 {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .section-card p {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+    }
+
+    /* Sub Tab */
+    .sub-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 4px;
+    }
+
+    .sub-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .sub-tab {
+      flex-shrink: 0;
+      padding: 8px 16px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .sub-tab.active {
+      background: var(--color-text-primary);
+      color: var(--color-surface);
+      border-color: var(--color-text-primary);
+    }
+
+    /* Content List */
+    .content-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .content-item {
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .content-item h4 {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .content-item p {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+    }
+
+    .content-tag {
+      display: inline-block;
+      font-size: 11px;
+      padding: 3px 10px;
+      background: var(--color-accent-light);
+      color: var(--color-accent);
+      border-radius: 12px;
+      margin-top: 10px;
+    }
+
+    /* Transport Table */
+    .transport-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .transport-item {
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .transport-item h4 {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .transport-item p {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+    }
+
+    .transport-note {
+      font-size: 12px;
+      color: var(--color-text-light);
+      margin-top: 6px;
+    }
+
+    /* Bottom Tab Bar */
+    .tab-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--color-surface);
+      display: flex;
+      justify-content: space-around;
+      padding: 8px 0;
+      padding-bottom: calc(8px + var(--safe-bottom));
+      border-top: 1px solid var(--color-border);
+      z-index: 1000;
+    }
+
+    .tab-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 4px 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-icon {
+      font-size: 20px;
+      margin-bottom: 2px;
+    }
+
+    .tab-label {
+      font-size: 10px;
+      color: var(--color-text-light);
+      transition: color 0.2s ease;
+    }
+
+    .tab-item.active .tab-label {
+      color: var(--color-text-primary);
+      font-weight: 500;
+    }
+
+    /* FAQ Accordion */
+    .faq-item {
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      margin-bottom: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .faq-question {
+      padding: 16px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 18px;
+      color: var(--color-text-light);
+      transition: transform 0.2s ease;
+    }
+
+    .faq-item.open .faq-question::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+    }
+
+    .faq-answer-inner {
+      padding: 0 16px 16px;
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--color-text-primary);
+      color: var(--color-surface);
+      padding: 12px 24px;
+      border-radius: var(--radius-lg);
+      font-size: 13px;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 2000;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Loading */
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: var(--color-text-light);
+      font-size: 14px;
+    }
+
+    /* Placeholder */
+    .placeholder {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--color-text-light);
+    }
+
+    .placeholder-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .placeholder h3 {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .placeholder p {
+      font-size: 13px;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 320px;
+      margin: -20px -20px 0 -20px;
+      background: url('assets/hero-bg.png') center center / cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0.6) 40%,
+        rgba(255, 255, 255, 0.95) 80%,
+        rgba(250, 250, 248, 1) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hero-title {
+      font-size: 56px;
+      font-weight: 700;
+      letter-spacing: 8px;
+      color: var(--color-text-primary);
+      margin-bottom: 8px;
+      text-shadow: 0 2px 20px rgba(255, 255, 255, 0.8);
+    }
+
+    .hero-subtitle {
+      font-size: 20px;
+      color: var(--color-accent);
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .hero-desc {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+    }
+
+    /* Section Cards */
+    .section-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 24px 0;
+    }
+
+    .section-card-item {
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-card-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--color-accent);
+      border-radius: 2px 0 0 2px;
+    }
+
+    .section-card-item:active {
+      transform: scale(0.98);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--color-text-primary);
+    }
+
+    .card-desc {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ===================== 攻略页样式 ===================== */
+    .guide-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 20px;
+      position: relative;
+    }
+
+    .guide-back-btn {
+      position: absolute;
+      left: 16px;
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: var(--color-surface);
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .guide-back-btn:active {
+      transform: scale(0.9);
+      background: var(--color-tag-bg);
+    }
+
+    .guide-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+    }
+
+    /* 横向时间轴 */
+    .timeline-wrapper {
+      padding: 20px 0 10px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .timeline-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+
+    .timeline-track {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-width: 700px;
+      padding: 0 40px;
+    }
+
+    .timeline-wave {
+      position: absolute;
+      top: 50%;
+      left: 40px;
+      right: 40px;
+      height: 60px;
+      transform: translateY(-50%);
+      z-index: 0;
+    }
+
+    .timeline-node {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+      cursor: pointer;
+      max-width: 200px;
+    }
+
+    .node-dot {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      margin-bottom: 12px;
+    }
+
+    .node-dot:active {
+      transform: scale(0.9);
+    }
+
+    .dot-pink {
+      background: linear-gradient(135deg, var(--color-pink), var(--color-pink-dark));
+    }
+
+    .dot-purple {
+      background: linear-gradient(135deg, var(--color-purple), var(--color-purple-dark));
+    }
+
+    .dot-mint {
+      background: linear-gradient(135deg, var(--color-mint), var(--color-mint-dark));
+    }
+
+    .node-content {
+      text-align: center;
+    }
+
+    .node-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      margin-bottom: 4px;
+    }
+
+    .node-desc {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+    }
+
+    /* 内容展示区 */
+    .guide-content {
+      padding: 20px;
+    }
+
+    .guide-section {
+      display: none;
+      text-align: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .guide-section.active {
+      display: block;
+    }
+
+    .section-icon-big {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+
+    .section-title-big {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      margin-bottom: 24px;
+    }
+
+    /* 板块内容项 */
+    .section-items {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .section-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--color-surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .section-item:active {
+      transform: scale(0.98);
+      background: var(--color-tag-bg);
+    }
+
+    .item-emoji {
+      font-size: 20px;
+    }
+
+    .item-text {
+      flex: 1;
+      font-size: 15px;
+      color: var(--color-text-primary);
+      text-align: left;
+    }
+
+    .item-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .item-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .item-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--color-text-primary);
+    }
+
+    .item-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .item-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+
+    .item-tag.pro {
+      background: #E8F5E9;
+      color: #2E7D32;
+    }
+
+    .item-tag.con {
+      background: #FFF3E0;
+      color: #E65100;
+    }
+
+    .item-emoji {
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .item-arrow {
+      font-size: 18px;
+      color: var(--color-text-light);
+      flex-shrink: 0;
+    }
+
+    /* 淘宝购买卡片 - 个人推荐款 */
+    .taobao-buy-card {
+      display: flex;
+      align-items: stretch;
+      margin: 16px;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(255, 107, 107, 0.2);
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .taobao-buy-card:active {
+      transform: scale(0.98);
+      box-shadow: 0 2px 8px rgba(255, 107, 107, 0.2);
+    }
+
+    .buy-card-left {
+      width: 70px;
+      background: linear-gradient(180deg, #FF8C5A 0%, #FF6B6B 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .buy-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      border-radius: 8px;
+      padding: 8px 6px;
+      text-align: center;
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .buy-card-right {
+      flex: 1;
+      background: linear-gradient(135deg, #FFF5F5 0%, #FFFFFF 100%);
+      padding: 14px 16px;
+    }
+
+    .buy-card-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 10px;
+      margin-bottom: 8px;
+    }
+
+    .buy-card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      margin-bottom: 4px;
+    }
+
+    .buy-card-subtitle {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      margin-bottom: 10px;
+    }
+
+    .buy-card-tip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #FFF9E6;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #996600;
+    }
+
+    .tip-icon {
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+  <body>
+
+  <!-- ===================== 欢迎页 ===================== -->
+  <div id="page-home" class="page active">
+    <div class="welcome-page">
+      <!-- 装饰元素 -->
+      <span class="welcome-deco deco-1">✨</span>
+      <span class="welcome-deco deco-2">🌸</span>
+      <span class="welcome-deco deco-3">💕</span>
+      <span class="welcome-deco deco-4">🌈</span>
+      <span class="welcome-deco deco-5">🎀</span>
+      <span class="welcome-deco deco-6">⭐</span>
+
+      <div class="welcome-content">
+        <!-- TODO: 添加小导游卡通形象作为主视觉 -->
+        <div class="welcome-logo">🏯</div>
+        <h1 class="welcome-title">开始韩里韩气的冒险吧！</h1>
+        <p class="welcome-tagline">纯手搓打造的独家旅行攻略 💕</p>
+        <button class="welcome-start-btn" onclick="switchTab('guide')">
+          <span>开启旅行吧~</span>
+          <span>→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== 攻略页（横向时间轴）===================== -->
+  <div id="page-guide" class="page">
+    <!-- 页面标题 -->
+    <div class="guide-header">
+      <button class="guide-back-btn" onclick="switchTab('home')">
+        <span>←</span>
+      </button>
+      <h1 class="guide-title">✈️ 首尔旅行攻略</h1>
+    </div>
+
+    <!-- 横向时间轴 -->
+    <div class="timeline-wrapper">
+      <div class="timeline-track">
+        <svg class="timeline-wave" viewBox="0 0 900 60" preserveAspectRatio="none">
+          <path d="M0,30 Q75,5 150,30 T300,30 T450,30 T600,30 T750,30 T900,30" 
+                stroke="#E8D4E8" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="12 8"/>
+        </svg>
+        
+        <!-- 节点1: 出发 -->
+        <div class="timeline-node node-1" onclick="showSection(1)">
+          <div class="node-dot dot-pink">
+            <span class="node-emoji">✈️</span>
+          </div>
+          <div class="node-content">
+            <div class="node-title">冲鸭！思密达！</div>
+            <div class="node-desc">出发前准备</div>
+          </div>
+        </div>
+
+        <!-- 节点2: 暴走 -->
+        <div class="timeline-node node-2" onclick="showSection(2)">
+          <div class="node-dot dot-purple">
+            <span class="node-emoji">📍</span>
+          </div>
+          <div class="node-content">
+            <div class="node-title">暴走首尔地图</div>
+            <div class="node-desc">景点 · 美食 · 购物</div>
+          </div>
+        </div>
+
+        <!-- 节点3: 回家 -->
+        <div class="timeline-node node-3" onclick="showSection(3)">
+          <div class="node-dot dot-mint">
+            <span class="node-emoji">🥲</span>
+          </div>
+          <div class="node-content">
+            <div class="node-title">下次还要再来！</div>
+            <div class="node-desc">顺利返程</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 内容展示区 -->
+    <div class="guide-content">
+      <!-- 板块1: 出发 -->
+      <div id="section-1" class="guide-section active">
+        <div class="section-icon-big">✈️</div>
+        <h2 class="section-title-big">冲鸭！思密达！</h2>
+        <p class="section-subtitle">出发前的所有准备，一次搞定</p>
+        
+        <div class="section-items">
+          <div class="section-item" onclick="switchTab('prepare')">
+            <span class="item-emoji">🎫</span>
+            <span class="item-text">机票怎么买</span>
+            <span class="item-arrow">›</span>
+          </div>
+          <div class="section-item" onclick="switchTab('prepare')">
+            <span class="item-emoji">📋</span>
+            <span class="item-text">签证与护照</span>
+            <span class="item-arrow">›</span>
+          </div>
+          <div class="section-item" onclick="switchTab('simcard')">
+            <span class="item-emoji">📱</span>
+            <span class="item-text">电话卡 / 流量</span>
+            <span class="item-arrow">›</span>
+          </div>
+          <div class="section-item" onclick="switchTab('arrive')">
+            <span class="item-emoji">💳</span>
+            <span class="item-text">交通卡</span>
+            <span class="item-arrow">›</span>
+          </div>
+          <div class="section-item" onclick="switchTab('arrive')">
+            <span class="item-emoji">💰</span>
+            <span class="item-text">现金准备</span>
+            <span class="item-arrow">›</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 板块2: 暴走 -->
+      <div id="section-2" class="guide-section">
+        <div class="section-icon-big">📍</div>
+        <h2 class="section-title-big">暴走首尔地图</h2>
+        <p class="section-subtitle">景点 · 美食 · 购物一网打尽</p>
+        
+        <div class="section-items">
+          <div class="section-item" onclick="switchTab('play')">
+            <span class="item-emoji">🏛️</span>
+            <span class="item-text">必打卡景点</span>
+            <span class="item-arrow">›</span>
+          </div>
+          <div class="section-item" onclick="switchTab('play')">
+            <span class="item-emoji">🍜</span>
+            <span class="item-text">美食推荐</span>
+            <span class="item-arrow">›</span>
+          </div>
+          <div class="section-item" onclick="switchTab('play')">
+            <span class="item-emoji">🛍️</span>
+            <span class="item-text">购物攻略</span>
+            <span class="item-arrow">›</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 板块3: 回家 -->
+      <div id="section-3" class="guide-section">
+        <div class="section-icon-big">🥲</div>
+        <h2 class="section-title-big">下次还要再来！</h2>
+        <p class="section-subtitle">顺利返程，期待下一次出发</p>
+        
+        <div class="section-items">
+          <div class="section-item" onclick="switchTab('depart')">
+            <span class="item-emoji">🛫</span>
+            <span class="item-text">机场攻略</span>
+            <span class="item-arrow">›</span>
+          </div>
+          <div class="section-item" onclick="switchTab('depart')">
+            <span class="item-emoji">🎁</span>
+            <span class="item-text">免税店提货</span>
+            <span class="item-arrow">›</span>
+          </div>
+          <div class="section-item" onclick="switchTab('depart')">
+            <span class="item-emoji">💰</span>
+            <span class="item-text">退税指南</span>
+            <span class="item-arrow">›</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page: Prepare -->
+  <div id="page-arrive" class="page">
+    <p class="section-title">抵达首尔</p>
+
+    <div class="section-card">
+      <h3>✈️ 推荐行程</h3>
+      <p>金浦机场落地首尔 → 仁川机场回国<br><br>金浦离市区更近，交通更方便；仁川机场安检后商铺多，适合作为最后一站。</p>
+    </div>
+
+    <div class="section-card">
+      <h3>📝 入境申报</h3>
+      <p>可在出发前在手机上填写电子版入境申报单，也可以在飞机上领取纸质表格填写。</p>
+    </div>
+
+    <p class="section-title">机场到市区交通</p>
+    <div class="transport-grid">
+      <div class="transport-item">
+        <h4>🚌 机场大巴</h4>
+        <p>约2小时到达市区</p>
+        <p class="transport-note">仁川落地首选，座位舒适</p>
+      </div>
+      <div class="transport-item">
+        <h4>🚇 地铁</h4>
+        <p>需购票，不能直接刷气候卡</p>
+        <p class="transport-note">金浦机场可直接乘地铁，建议在便利店购买气候卡</p>
+      </div>
+      <div class="transport-item">
+        <h4>🚕 打车</h4>
+        <p>约45-60分钟到市区</p>
+        <p class="transport-note">费用较高，适合行李多的场景</p>
+      </div>
+    </div>
+
+    <p class="section-title">💳 T-money卡激活</p>
+    <div class="section-card">
+      <h3>第一步：买卡</h3>
+      <p>在便利店（如CU、GS25）购买T-money卡或气候卡</p>
+    </div>
+    <div class="section-card">
+      <h3>第二步：充值</h3>
+      <p>在便利店或地铁站的充值机充值</p>
+    </div>
+    <div class="section-card">
+      <h3>第三步：使用</h3>
+      <p>乘坐地铁和公交时刷卡即可，部分商店也支持T-money支付</p>
+    </div>
+  </div>
+
+  <!-- Page: SIM Card 流量卡专题 - 入口页 -->
+  <div id="page-simcard" class="page">
+    <div class="guide-header">
+      <button class="guide-back-btn" onclick="switchTab('guide')">
+        <span>←</span>
+      </button>
+      <h1 class="guide-title">📱 流量卡 / 电话卡</h1>
+    </div>
+
+    <p class="section-subtitle" style="padding: 0 20px 16px; color: var(--color-text-secondary);">四种方式，帮你选最适合自己的</p>
+
+    <div class="section-items" style="padding: 0 16px;">
+      <div class="section-item" onclick="showSimDetail('roaming')">
+        <span class="item-emoji">📡</span>
+        <div class="item-detail">
+          <div class="item-title-row">
+            <span class="item-title">漫游套餐</span>
+          </div>
+          <div class="item-tags">
+            <span class="item-tag pro">✅ 省心</span>
+            <span class="item-tag pro">落地即用</span>
+            <span class="item-tag con">❌ 价格偏高</span>
+          </div>
+        </div>
+        <span class="item-arrow">›</span>
+      </div>
+      <div class="section-item" onclick="showSimDetail('taobao')">
+        <span class="item-emoji">🛒</span>
+        <div class="item-detail">
+          <div class="item-title-row">
+            <span class="item-title">淘宝购买</span>
+          </div>
+          <div class="item-tags">
+            <span class="item-tag pro">✅ 便宜</span>
+            <span class="item-tag pro">灵活天数</span>
+            <span class="item-tag con">❌ 需提前购买</span>
+          </div>
+        </div>
+        <span class="item-arrow">›</span>
+      </div>
+      <div class="section-item" onclick="showSimDetail('esim')">
+        <span class="item-emoji">📲</span>
+        <div class="item-detail">
+          <div class="item-title-row">
+            <span class="item-title">eSIM 卡</span>
+          </div>
+          <div class="item-tags">
+            <span class="item-tag pro">✅ 扫码即用</span>
+            <span class="item-tag pro">不换卡</span>
+            <span class="item-tag con">❌ 需设备支持</span>
+          </div>
+        </div>
+        <span class="item-arrow">›</span>
+      </div>
+      <div class="section-item" onclick="showSimDetail('airport')">
+        <span class="item-emoji">✈️</span>
+        <div class="item-detail">
+          <div class="item-title-row">
+            <span class="item-title">机场取卡</span>
+          </div>
+          <div class="item-tags">
+            <span class="item-tag pro">✅ 说走就走</span>
+            <span class="item-tag pro">中文服务</span>
+            <span class="item-tag con">❌ 略贵可能排队</span>
+          </div>
+        </div>
+        <span class="item-arrow">›</span>
+      </div>
+    </div>
+
+    <p class="section-subtitle" style="padding: 24px 20px 8px; color: var(--color-text-secondary); font-size: 13px;">💡 流量卡不能打电话，如需通话功能可在取卡时另加电话卡套餐</p>
+  </div>
+
+  <!-- 流量卡详情页: 漫游套餐 -->
+  <div id="page-sim-roaming" class="page">
+    <div class="guide-header">
+      <button class="guide-back-btn" onclick="switchTab('simcard')">
+        <span>←</span>
+      </button>
+      <h1 class="guide-title">📡 漫游套餐</h1>
+    </div>
+
+    <div class="section-card">
+      <h3>怎么买</h3>
+      <p>直接在国内运营商（移动/联通/电信）开通国际漫游套餐。</p>
+      <br>
+      <p>可在运营商App、官方网站或拨打客服电话办理。</p>
+    </div>
+
+    <div class="section-card">
+      <h3>✅ 优势</h3>
+      <p>无需换卡，出行前开通即可，回来后自动恢复</p>
+      <p>落地即可使用，无缝衔接</p>
+      <p>不依赖第三方，可直接收发短信和打电话</p>
+    </div>
+
+    <div class="section-card">
+      <h3>❌ 劣势</h3>
+      <p>价格相对较高</p>
+      <p>部分套餐流量有限，并非无限量</p>
+      <p>网速可能受运营商漫游资费和当地网络影响</p>
+    </div>
+  </div>
+
+  <!-- 流量卡详情页: 淘宝购买 -->
+  <div id="page-sim-taobao" class="page">
+    <div class="guide-header">
+      <button class="guide-back-btn" onclick="switchTab('simcard')">
+        <span>←</span>
+      </button>
+      <h1 class="guide-title">🛒 淘宝购买</h1>
+    </div>
+
+    <!-- 购买入口卡片 - 个人推荐款 -->
+    <a href="https://m.tb.cn/h.ivOvEUJ?tk=CxoB5luSPRN" class="taobao-buy-card">
+      <div class="buy-card-left">
+        <div class="buy-btn">点此<br>购买</div>
+      </div>
+      <div class="buy-card-right">
+        <div class="buy-card-badge">🌟 店铺推荐</div>
+        <div class="buy-card-title">韩国 SKT 原生卡</div>
+        <div class="buy-card-subtitle">无限流量 · 2-10天可选 · 首尔釜山济州岛通用</div>
+        <div class="buy-card-tip">
+          <span class="tip-icon">💡</span>
+          <span>购买时可向商家索取 <strong>3元满减券</strong></span>
+        </div>
+      </div>
+    </a>
+
+    <div class="section-card">
+      <h3>怎么买</h3>
+      <p>点击上方卡片可直接打开淘宝商品页面购买。</p>
+      <br>
+      <p>也可在淘宝搜索关键词 <strong>"韩国 SKT 流量卡"</strong> 找到类似商品。</p>
+      <br>
+      <p>有纯流量版和通话+流量版可选，如有接打电话需求建议购买通信流量版。</p>
+    </div>
+
+    <div class="section-card">
+      <h3>✅ 优势</h3>
+      <p>价格划算，选择灵活</p>
+      <p>可按天数购买，量贩式选择</p>
+      <p>邮寄到家，出行前收到</p>
+    </div>
+
+    <div class="section-card">
+      <h3>❌ 劣势</h3>
+      <p>需要提前购买并等待邮寄</p>
+      <p>需换卡，原手机号无法使用</p>
+      <p>部分卡可能存在信号不稳定的情况</p>
+    </div>
+  </div>
+
+  <!-- 流量卡详情页: eSIM -->
+  <div id="page-sim-esim" class="page">
+    <div class="guide-header">
+      <button class="guide-back-btn" onclick="switchTab('simcard')">
+        <span>←</span>
+      </button>
+      <h1 class="guide-title">📲 eSIM 卡</h1>
+    </div>
+
+    <div class="section-card">
+      <h3>怎么买</h3>
+      <p>在淘宝或 eSIM 官网购买韩国 eSIM 套餐。</p>
+      <br>
+      <p>购买后收到二维码，扫码激活即可使用。</p>
+      <br>
+      <p>⚠️ <strong>注意</strong>：仅支持eSIM功能手机（如iPhone XS及以上、部分安卓旗舰机）</p>
+    </div>
+
+    <div class="section-card">
+      <h3>✅ 优势</h3>
+      <p>无需换卡，保留原手机号</p>
+      <p>激活方便，扫码即可</p>
+      <p>不占用实体卡槽</p>
+    </div>
+
+    <div class="section-card">
+      <h3>❌ 劣势</h3>
+      <p>需要手机支持eSIM功能</p>
+      <p>部分手机可能不兼容</p>
+      <p>在国内使用前需确认手机已解锁</p>
+    </div>
+  </div>
+
+  <!-- 流量卡详情页: 机场取卡 -->
+  <div id="page-sim-airport" class="page">
+    <div class="guide-header">
+      <button class="guide-back-btn" onclick="switchTab('simcard')">
+        <span>←</span>
+      </button>
+      <h1 class="guide-title">✈️ 机场取卡</h1>
+    </div>
+
+    <div class="section-card">
+      <h3>怎么买</h3>
+      <p>在携程等平台购买 LGU 套餐，线上支付后线下取货。</p>
+      <br>
+      <p>韩国机场有柜台，柜台工作人员会说中文，会帮忙安装激活。</p>
+    </div>
+
+    <div class="section-card">
+      <h3>📊 流量说明</h3>
+      <p>可自行选择天数，选好后每天流量<strong>不限量</strong>。</p>
+      <br>
+      <p>网络稳定，在场馆内也能正常发微信消息和图片。</p>
+    </div>
+
+    <div class="section-card">
+      <h3>✅ 优势</h3>
+      <p>无需提前准备，说走就走</p>
+      <p>有中文服务，现场安装</p>
+      <p>落地即可使用</p>
+    </div>
+
+    <div class="section-card">
+      <h3>❌ 劣势</h3>
+      <p>单买流量卡<strong>不能打电话</strong></p>
+      <p>如需通话功能需另加电话卡套餐</p>
+      <p>价格可能比提前购买略贵</p>
+    </div>
+
+    <div class="section-card">
+      <h3>📶 首尔免费 WiFi</h3>
+      <p>地铁、地铁站、机场都有<strong>免费 WiFi</strong>，自动连接，网速很快。</p>
+    </div>
+  </div>
+
+  <!-- Page: Play -->
+  <div id="page-play" class="page">
+    <div class="sub-tabs">
+      <div class="sub-tab active" onclick="switchSubTab(this, 'spots')">景点</div>
+      <div class="sub-tab" onclick="switchSubTab(this, 'food')">美食</div>
+      <div class="sub-tab" onclick="switchSubTab(this, 'shop')">购物</div>
+    </div>
+
+    <!-- Sub Tab: Spots -->
+    <div id="sub-spots" class="sub-content active">
+      <div class="placeholder">
+        <div class="placeholder-icon">🏛️</div>
+        <h3>景点攻略开发中</h3>
+        <p>即将上线：首尔各区域玩法、必打卡景点、小众隐藏地点</p>
+      </div>
+    </div>
+
+    <!-- Sub Tab: Food -->
+    <div id="sub-food" class="sub-content">
+      <div class="placeholder">
+        <div class="placeholder-icon">🍜</div>
+        <h3>美食攻略开发中</h3>
+        <p>即将上线：韩餐推荐、烤肉店、炸鸡、甜品店、觅食技巧</p>
+      </div>
+    </div>
+
+    <!-- Sub Tab: Shop -->
+    <div id="sub-shop" class="sub-content">
+      <div class="placeholder">
+        <div class="placeholder-icon">🛍️</div>
+        <h3>购物攻略开发中</h3>
+        <p>即将上线：免税店攻略、Olive Young必买、退税指南</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page: Depart -->
+  <div id="page-depart" class="page">
+    <p class="section-title">返程</p>
+
+    <div class="section-card">
+      <h3>🛫 仁川机场攻略</h3>
+      <p>值机 → 托运 → 出境检查 → 安检 → 登机口<br><br>建议提前3小时到达机场，留出充足时间</p>
+    </div>
+
+    <div class="section-card">
+      <h3>🎁 免税店提货</h3>
+      <p>在App下单的免税商品，需在机场提货点领取<br><br>提货地点通常在安检后的登机口附近</p>
+    </div>
+
+    <div class="section-card">
+      <h3>💰 剩余现金处理</h3>
+      <p>方式一：在机场免税店花掉<br>方式二：去机场的换钱所换回人民币<br>方式三：留着下次用，下次再充值T-money卡</p>
+    </div>
+
+    <div class="section-card">
+      <h3>📋 退税指南</h3>
+      <p>在标有"Tax Refund"的店铺购物满一定金额可申请退税<br><br>小票保存好，离境时在机场办理</p>
+    </div>
+  </div>
+
+  <!-- Page: FAQ -->
+  <div id="page-faq" class="page">
+    <p class="section-title">常见问题</p>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-question">急救清单：生病/受伤怎么办？</div>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          在韩国就医可前往社区医院或大型医院。建议提前购买旅行保险。紧急情况拨打119（火灾/急救）。药品可在药店购买，必要药品建议从国内自带。
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-question">语言不通怎么沟通？</div>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          使用Papago翻译App，支持语音和拍照翻译。简单英语在首尔基本通用。重要信息可以写下来或用手机展示给对方看。
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-question">东西丢了怎么办？</div>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          物品遗失可联系地铁站失物招领处（地铁站服务台）。银行卡丢失立即联系银行冻结。护照丢失联系中国驻韩大使馆。
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-question">哪些app是必装的？</div>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          地图：Naver Map（推荐）、Google Map<br>
+          翻译：Papago<br>
+          交通：韩国地铁App<br>
+          购物：乐天/新罗免税店App、Olive Young<br>
+          美食：Naver Map搜索附近餐厅
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-question">需要带多少现金？</div>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          建议带50-100万韩币（约2500-5000人民币）现金，主要用于小店消费、交通卡充值、小吃等。大额消费可刷VISA卡或使用T-money卡。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <script>
+    // 页面切换
+    function switchTab(tabName) {
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      document.getElementById('page-' + tabName).classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    // 流量卡详情页切换
+    function showSimDetail(type) {
+      const pageMap = {
+        'roaming': 'page-sim-roaming',
+        'taobao': 'page-sim-taobao',
+        'esim': 'page-sim-esim',
+        'airport': 'page-sim-airport'
+      };
+      const pageId = pageMap[type];
+      if (pageId) {
+        document.querySelectorAll('.page').forEach(page => {
+          page.classList.remove('active');
+        });
+        document.getElementById(pageId).classList.add('active');
+        window.scrollTo(0, 0);
+      }
+    }
+
+    // 时间轴板块切换
+    function showSection(num) {
+      // 移除所有active
+      document.querySelectorAll('.guide-section').forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById('section-' + num).classList.add('active');
+    }
+
+    // Toast
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2000);
+    }
+  </script>
+
+</body>
+</html>
