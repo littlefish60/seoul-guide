@@ -1,0 +1,274 @@
+:::title{nodeId="title001"}
+Seoul旅行攻略 - 设计更新记录
+:::
+
+:::heading{level=1 nodeId="h000"}
+设计更新记录
+:::
+
+:::heading{level=2 nodeId="h001"}
+⚠️ 当前限制
+:::
+
+:::paragraph{nodeId="p_limit"}
+**图片识别限制**：当前CatDesk模型无法识别/分析图片内容，无法通过截图理解用户的设计意图。解决方案：用户需要通过文字描述来传达设计想法，AI根据描述进行理解和实现。
+:::
+
+:::heading{level=2 nodeId="h002"}
+🎨 UI/UX设计更新（2025.05.02）
+:::
+
+:::heading{level=3 nodeId="h003"}
+8.1 欢迎页设计
+:::
+
+:::bullet_list{indent=0 nodeId="bl_welcome"}
+:::list_item{level=0 hidden=false nodeId="li_w001"}
+:::paragraph{nodeId="w001"}
+**页面结构**：采用两页设计 - 欢迎页 + 攻略页
+:::
+:::
+:::list_item{level=0 hidden=false nodeId="li_w002"}
+:::paragraph{nodeId="w002"}
+**欢迎页元素**：
+:::bullet_list{indent=1 nodeId="bl_welcome2"}
+:::list_item{level=1 hidden=false nodeId="li_w003"}
+:::paragraph{nodeId="w003"}
+渐变背景（浅粉 → 暖白 → 淡紫）
+:::
+:::
+:::list_item{level=1 hidden=false nodeId="li_w004"}
+:::paragraph{nodeId="w004"}
+漂浮装饰动画（✨🌸💕🌈🎀⭐）
+:::
+:::
+:::list_item{level=1 hidden=false nodeId="li_w005"}
+:::paragraph{nodeId="w005"}
+**主标题**：开始韩里韩气的冒险吧！ 🗺️
+:::
+:::
+:::list_item{level=1 hidden=false nodeId="li_w006"}
+:::paragraph{nodeId="w006"}
+**标语**：纯手搓打造的独家旅行攻略 💕
+:::
+:::
+:::list_item{level=1 hidden=false nodeId="li_w007"}
+:::paragraph{nodeId="w007"}
+主视觉图标：🏯（传统建筑风，简约高级）
+:::
+:::
+:::list_item{level=1 hidden=false nodeId="li_w008"}
+:::paragraph{nodeId="w008"}
+开始按钮：渐变粉色 → 紫色
+:::
+:::
+:::
+:::
+:::
+:::list_item{level=0 hidden=false nodeId="li_w009"}
+:::paragraph{nodeId="w009"}
+**小导游IP**：用户提供了粉色头发卡通形象，希望作为全程小导游角色融入页面
+:::
+:::
+:::list_item{level=0 hidden=false nodeId="li_w010"}
+:::paragraph{nodeId="w010"}
+**风格参考**：用户提供了一张参考图，目标是更高级、有质感的风格
+:::
+:::
+:::
+
+:::heading{level=3 nodeId="h004"}
+8.2 攻略页设计
+:::
+
+:::bullet_list{indent=0 nodeId="bl_guide"}
+:::list_item{level=0 hidden=false nodeId="li_g001"}
+:::paragraph{nodeId="g001"}
+**横向时间轴**：SVG波浪线连接三个渐变色圆形节点，点击切换内容
+:::
+:::
+:::list_item{level=0 hidden=false nodeId="li_g002"}
+:::paragraph{nodeId="g002"}
+**节点样式**：
+:::bullet_list{indent=1 nodeId="bl_guide2"}
+:::list_item{level=1 hidden=false nodeId="li_g003"}
+:::paragraph{nodeId="g003"}
+节点1（粉色渐变）：✈️ 冲鸭！思密达！
+:::
+:::
+:::list_item{level=1 hidden=false nodeId="li_g004"}
+:::paragraph{nodeId="g004"}
+节点2（紫色渐变）：📍 暴走首尔地图
+:::
+:::
+:::list_item{level=1 hidden=false nodeId="li_g005"}
+:::paragraph{nodeId="g005"}
+节点3（薄荷绿渐变）：🥲 下次还要再来！
+:::
+:::
+:::
+:::
+:::list_item{level=0 hidden=false nodeId="li_g006"}
+:::paragraph{nodeId="g006"}
+**返回按钮**：攻略页左上角圆形返回按钮，可回到欢迎页
+:::
+:::
+:::list_item{level=0 hidden=false nodeId="li_g007"}
+:::paragraph{nodeId="g007"}
+**无底部Tab栏**：采用简洁的顶部时间轴设计
+:::
+:::
+:::
+
+:::heading{level=3 nodeId="h005"}
+8.3 配色方案（已落地）
+:::
+
+:::table{borderColor="#dddddd" borderStyle="solid" borderWidth=1 responsive=true nodeId="t_color"}
+:::table_row{nodeId="tr_color1"}
+:::table_header{colwidth="50" nodeId="th_c001"}
+:::paragraph{nodeId="c001"}
+类别
+:::
+:::
+:::table_header{colwidth="50" nodeId="th_c002"}
+:::paragraph{nodeId="c002"}
+颜色值
+:::
+:::
+:::table_header{colwidth="100" nodeId="th_c003"}
+:::paragraph{nodeId="c003"}
+说明
+:::
+:::
+:::
+:::table_row{nodeId="tr_color2"}
+:::table_cell{colwidth="50" nodeId="tc_c001"}
+:::paragraph{nodeId="c004"}
+背景色
+:::
+:::
+:::table_cell{colwidth="50" nodeId="tc_c002"}
+:::paragraph{nodeId="c005"}
+#FDF8F5
+:::
+:::
+:::table_cell{colwidth="100" nodeId="tc_c003"}
+:::paragraph{nodeId="c006"}
+暖白色
+:::
+:::
+:::
+:::table_row{nodeId="tr_color3"}
+:::table_cell{colwidth="50" nodeId="tc_c004"}
+:::paragraph{nodeId="c007"}
+文字色
+:::
+:::
+:::table_cell{colwidth="50" nodeId="tc_c005"}
+:::paragraph{nodeId="c008"}
+#4A4A4A
+:::
+:::
+:::table_cell{colwidth="100" nodeId="tc_c006"}
+:::paragraph{nodeId="c009"}
+柔和深灰
+:::
+:::
+:::
+:::table_row{nodeId="tr_color4"}
+:::table_cell{colwidth="50" nodeId="tc_c007"}
+:::paragraph{nodeId="c010"}
+出发板块
+:::
+:::
+:::table_cell{colwidth="50" nodeId="tc_c008"}
+:::paragraph{nodeId="c011"}
+#F2C4CE / #E8A0B0
+:::
+:::
+:::table_cell{colwidth="100" nodeId="tc_c009"}
+:::paragraph{nodeId="c012"}
+浅粉色（出发）
+:::
+:::
+:::
+:::table_row{nodeId="tr_color5"}
+:::table_cell{colwidth="50" nodeId="tc_c010"}
+:::paragraph{nodeId="c013"}
+行中板块
+:::
+:::
+:::table_cell{colwidth="50" nodeId="tc_c011"}
+:::paragraph{nodeId="c014"}
+#D4C4E8 / #B8A0D0
+:::
+:::
+:::table_cell{colwidth="100" nodeId="tc_c012"}
+:::paragraph{nodeId="c015"}
+淡紫色（暴走）
+:::
+:::
+:::
+:::table_row{nodeId="tr_color6"}
+:::table_cell{colwidth="50" nodeId="tc_c013"}
+:::paragraph{nodeId="c016"}
+返程板块
+:::
+:::
+:::table_cell{colwidth="50" nodeId="tc_c014"}
+:::paragraph{nodeId="c017"}
+#B8D8C8 / #98C0A8
+:::
+:::
+:::table_cell{colwidth="100" nodeId="tc_c015"}
+:::paragraph{nodeId="c018"}
+薄荷绿（回家）
+:::
+:::
+:::
+:::
+
+:::heading{level=2 nodeId="h006"}
+8.4 待完成设计项
+:::
+
+:::bullet_list{indent=0 nodeId="bl_todo"}
+:::list_item{level=0 hidden=false nodeId="li_t001"}
+:::paragraph{nodeId="t001"}
+**小导游形象融入**：将粉色头发卡通形象作为页面的导游角色，全程引导用户
+:::
+:::
+:::list_item{level=0 hidden=false nodeId="li_t002"}
+:::paragraph{nodeId="t002"}
+**首尔图标高级化**：将主视觉图标替换为更有质感的首尔特色元素（待确定具体方案）
+:::
+:::
+:::list_item{level=0 hidden=false nodeId="li_t003"}
+:::paragraph{nodeId="t003"}
+**欢迎页风格升级**：根据用户提供的参考图，升级欢迎页整体风格
+:::
+:::
+:::
+
+:::heading{level=2 nodeId="h007"}
+8.5 相关文件
+:::
+
+:::bullet_list{indent=0 nodeId="bl_files"}
+:::list_item{level=0 hidden=false nodeId="li_f001"}
+:::paragraph{nodeId="f001"}
+**设计参考图**：assets/style-reference.png
+:::
+:::
+:::list_item{level=0 hidden=false nodeId="li_f002"}
+:::paragraph{nodeId="f002"}
+**小导游形象**：assets/mascot-character.png
+:::
+:::
+:::list_item{level=0 hidden=false nodeId="li_f003"}
+:::paragraph{nodeId="f003"}
+**首页代码**：index.html
+:::
+:::
+:::
